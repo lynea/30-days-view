@@ -6,6 +6,11 @@ interface ListBoxProps {
   url: string;
 }
 
+interface Challenge {
+  description: string;
+  title: string;
+}
+
 const ListBox: FunctionComponent<ListBoxProps> = ({ url }) => {
   const router = useRouter();
   const { id } = router.query;
@@ -28,9 +33,12 @@ const ListBox: FunctionComponent<ListBoxProps> = ({ url }) => {
         user with id: ({id}) has {challenges.length} challenges to complete
       </h1>
       <StyledListBox>
-        {" "}
-        <li>hello</li>
-        <li>world</li>
+        {challenges.map((challenge: Challenge) => (
+          <li key={challenge.title}>
+            {" "}
+            title: {challenge.title} description: {challenge.description}{" "}
+          </li>
+        ))}
       </StyledListBox>
     </>
   );

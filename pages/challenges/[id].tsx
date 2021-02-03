@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import ListBox from "../../components/ListBox";
+import CreateBox from "../../components/CreateBox";
 
 const Home = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const Home = () => {
         <title>30 days challenge</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <CreateBox></CreateBox>
       <ListBox url={url}></ListBox>
     </div>
   );
