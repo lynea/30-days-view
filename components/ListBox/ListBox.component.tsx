@@ -1,5 +1,10 @@
 import React, { useEffect, useState, FunctionComponent } from "react";
-import StyledListBox from "./ListBox.styles";
+import StyledListBox, {
+  StyledDescription,
+  StyledTitle,
+  StyledCheckBoxContainer,
+  CheckBoxes,
+} from "./ListBox.styles";
 import { useRouter } from "next/router";
 
 interface ListBoxProps {
@@ -15,6 +20,19 @@ const ListBox: FunctionComponent<ListBoxProps> = ({ url }) => {
   const router = useRouter();
   const { id } = router.query;
   const [challenges, setChallenges] = useState([]);
+
+  const checkBoxes = [];
+
+  {
+    for (let index = 0; index <= 30; index++) {
+      checkBoxes.push(
+        <StyledCheckBoxContainer>
+          <label htmlFor={`text-box-${index}`}> day {index}</label>
+          <input type="checkbox" name={`text-box-${index}`} value={index} />
+        </StyledCheckBoxContainer>
+      );
+    }
+  }
 
   useEffect(() => {
     if (url) {
@@ -32,11 +50,13 @@ const ListBox: FunctionComponent<ListBoxProps> = ({ url }) => {
       <h1>
         user with id: ({id}) has {challenges.length} challenges to complete
       </h1>
+
       <StyledListBox>
         {challenges.map((challenge: Challenge) => (
           <li key={challenge.title}>
-            {" "}
-            title: {challenge.title} description: {challenge.description}{" "}
+            <StyledTitle>{challenge.title}</StyledTitle>
+            <StyledDescription>{challenge.description}</StyledDescription>
+            <CheckBoxes>{checkBoxes}</CheckBoxes>
           </li>
         ))}
       </StyledListBox>

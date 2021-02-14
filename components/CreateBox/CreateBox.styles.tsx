@@ -7,7 +7,11 @@ export const Container = styled.div`
 
 const boxHeight = "25rem";
 
-export const StyledCreateBox = styled.div`
+interface StyledCreateBoxProps {
+  clickable: boolean;
+}
+
+export const StyledCreateBox = styled.div<StyledCreateBoxProps>`
   padding: 1rem;
   border-radius: 0.4rem;
   display: flex;
@@ -24,6 +28,11 @@ export const StyledCreateBox = styled.div`
   bottom: 3rem;
   z-index: 1000;
   background: white;
+`;
+
+export const StyledSmallCreateBox = styled(StyledCreateBox)`
+  background: ${(props) => (props.clickable ? "white" : "purple")};
+  cursor: ${(props) => (props.clickable ? "pointer" : "not-allowed")};
 `;
 
 export const PurpleBox = styled.div`
@@ -84,4 +93,8 @@ export const Button = styled.button`
     -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.19);
     box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.19);
   }
+`;
+
+export const Error = styled.p`
+  color: red;
 `;
